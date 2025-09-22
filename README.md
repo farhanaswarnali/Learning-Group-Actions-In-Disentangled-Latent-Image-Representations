@@ -29,29 +29,31 @@ During training:
 ![L_total](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{total}}=\mathcal{L}_{\text{recon}}+\lambda_i\mathcal{L}_{\text{inv}}+\lambda_v\mathcal{L}_{\text{const}})
 
 where:
-- **Reconstruction loss**  
 
-![L_recon](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{recon}}=\text{MSE}(x,\hat{x}))
+- **Reconstruction loss**
 
-is the Mean Squared Error between reconstructed and rotated images.  
+![L_recon](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{recon}}=||D_{\theta}(\Phi_g(E_{\phi}(x)))-T_g(x)||^2)
 
-- **Invariant loss**  
+ensures that the decoder output of the transformed latent representation matches the ground truth transformed image.
+
+- **Invariant loss**
 
 ![L_inv](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{inv}}=||z_i^{(x)}-\mathrm{sg}[z_i^{(T_g(x))}]||^2)
 
-ensures that invariant latent features \(z_i\) are identical for the original and transformed images.  
+constrains the invariant latent features \(z_i\) to be identical for both the original and transformed inputs.
 
-- **Consistency loss**  
+- **Consistency loss**
 
 ![L_const](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{const}}=||\Phi_g^v(z_v^{(x)})-\mathrm{sg}[z_v^{(T_g(x))}]||^2)
 
-ensures that transforming the variant factors in latent space produces the same result as extracting them from the actually transformed image, leading to consistent and equivariant representation learning.  
+ensures that transforming the variant factors in latent space produces the same result as those extracted from the actually transformed image.
 
-Here, **sg[·]** (stop-gradient) prevents gradients from flowing through the encoder, so learning focuses on latent-space transformations rather than altering feature extraction.  
+Here, **sg[·]** (stop-gradient) prevents gradients from flowing through the encoder, focusing learning on latent-space transformations rather than feature extraction adjustments.
 
 Hyperparameters \( \lambda_i \) and \( \lambda_v \) are set to **1**, and the threshold \( \tau \) controls the sparsity of the learned latent partition.  
 We **jointly optimize all network parameters**, including the Adaptive Latent Disentanglement (ALD) and group action modules, enabling automatic discovery of meaningful latent partitions and their transformations.  
 
 Training uses the **Adam optimizer** (learning rate `1e-3`), batch size `64`, for `50` epochs, saving the model with the **lowest validation loss**.
+
 
 
