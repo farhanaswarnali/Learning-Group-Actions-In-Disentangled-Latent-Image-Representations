@@ -255,4 +255,4 @@ for epoch in range(epochs):
         torch.save(model.state_dict(), 'rotated_model.pth')
         print(f"Saved best model (val_loss: {best_val:.4f})")
 
-print("Training completed.")
+print("Training completed...")
