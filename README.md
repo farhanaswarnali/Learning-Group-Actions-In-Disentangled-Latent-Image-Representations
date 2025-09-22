@@ -34,13 +34,13 @@ Mean Squared Error (MSE) between reconstructed and rotated images.
 
 - **Invariant loss (L₍inv₎):**  
 
-![L_inv](https://latex.codecogs.com/svg.latex?\mathcal{L}_{inv}=||z_i^(x)-\mathrm{sg}[z_i^(T_g(x))]||^2)
+![L_inv](https://latex.codecogs.com/svg.latex?\mathcal{L}_{inv}=||z_i^{(x)}-\mathrm{sg}[z_i^{(T_g(x))}]||^2)
 
 ensures that invariant latent features \(z_i\) are identical for the original and transformed images.  
 
 - **Consistency loss (L₍const₎):**  
 
-![L_const](https://latex.codecogs.com/svg.latex?\mathcal{L}_{const}=||\Phi_g^v(z_v^(x))-\mathrm{sg}[z_v^(T_g(x))]||^2)
+![L_const](https://latex.codecogs.com/svg.latex?\mathcal{L}_{const}=||\Phi_g^v(z_v^{(x))}-\mathrm{sg}[z_v^{(T_g(x))}]||^2)
 
 ensures that transforming the variant factors in latent space produces the same result as extracting them from the actually transformed image, leading to consistent and equivariant representation learning.  
 
