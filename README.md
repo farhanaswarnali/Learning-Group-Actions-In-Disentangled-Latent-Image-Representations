@@ -56,4 +56,8 @@ We **jointly optimize all network parameters**, including the Adaptive Latent Di
 Training uses the **Adam optimizer** (learning rate `1e-3`), batch size `64`, for `50` epochs, saving the model with the **lowest validation loss**.
 
 
+## Usage
+
+Run `rotated_mnist.py` to train the model on **Rotated MNIST**.  
+The script takes care of data loading, model setup, loss computation, training, validation, and saves the best model based on validation loss.
 
