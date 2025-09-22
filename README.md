@@ -10,8 +10,6 @@ Modeling group actions on latent representations enables controllable transforma
 To run this project, following Python packages are needed:
 - torch
 - torchvision
-- matplotlib
-- scikit-learn
 - numpy
 
 ## Dataset
