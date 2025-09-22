@@ -37,7 +37,7 @@ def sample_subset(dataset, percent=0.1):
 
    return torch.utils.data.Subset(dataset, selected_indices)
 
-train_subset = sample_subset(full_train, 1.0)
+train_subset = sample_subset(full_train, 0.1)
 test_subset = full_test
 
 
@@ -154,8 +154,8 @@ class GroupLatentAutoencoder(nn.Module):
     def forward_with_latent_rotation(self, x, angles):
         z = self.encoder(x)
         mask = self.mask_module(z)
-        z_i = mask * z
-        z_v = (1 - mask) * z
+        z_v = mask * z
+        z_i = (1 - mask) * z
         z_v_rot = rotate_latent(z_v, angles)
         z_comb_rot = z_i + z_v_rot
         recon_rot = self.decoder(z_comb_rot)
