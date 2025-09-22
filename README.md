@@ -40,7 +40,7 @@ ensures that the decoder output of the transformed latent representation matches
 
 ![L_inv](https://latex.codecogs.com/svg.latex?\mathcal{L}_{\text{inv}}=||z_i^{(x)}-\mathrm{sg}[z_i^{(T_g(x))}]||^2)
 
-constrains the invariant latent features \(z_i\) to be identical for both the original and transformed inputs.
+constrains the invariant latent features to be identical for both the original and transformed inputs.
 
 - **Consistency loss**
 
