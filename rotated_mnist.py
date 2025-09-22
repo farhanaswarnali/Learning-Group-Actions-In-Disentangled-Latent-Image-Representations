@@ -37,7 +37,7 @@ def sample_subset(dataset, percent=0.1):
 
    return torch.utils.data.Subset(dataset, selected_indices)
 
-train_subset = sample_subset(full_train, 0.1)
+train_subset = sample_subset(full_train, 1.0)
 test_subset = full_test
 
 
