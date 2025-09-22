@@ -26,27 +26,31 @@ During training:
 - We **randomly sample pairs of data points** from the training set.
 - The model is optimized using the total loss:
 
-\[
-\mathcal{L}_{total} = \mathcal{L}_{recon} + \lambda_i \mathcal{L}_{inv} + \lambda_v \mathcal{L}_{const}
-\]
+![L_total](https://latex.codecogs.com/svg.latex?\mathcal{L}_{total}=\mathcal{L}_{recon}+\lambda_i\mathcal{L}_{inv}+\lambda_v\mathcal{L}_{const})
 
 where:
-- **Reconstruction loss (L₍recon₎):** Mean Squared Error (MSE) between reconstructed and rotated images.  
+- **Reconstruction loss (L₍recon₎):**  
+Mean Squared Error (MSE) between reconstructed and rotated images.  
+
 - **Invariant loss (L₍inv₎):**  
 
-\[
-\mathcal{L}_{inv} = \|z_i(x) - \mathrm{sg}[z_i(T_g(x))]\|^2
-\]
+![L_inv](https://latex.codecogs.com/svg.latex?\mathcal{L}_{inv}=||z_i(x)-\mathrm{sg}[z_i(T_g(x))]||^2)
 
 ensures that invariant latent features \(z_i\) are identical for the original and transformed images.  
 
 - **Consistency loss (L₍const₎):**  
 
-\[
-\mathcal{L}_{const} = \|\Phi_g^v(z_v(x)) - \mathrm{sg}[z_v(T_g(x))]\|^2
-\]
+![L_const](https://latex.codecogs.com/svg.latex?\mathcal{L}_{const}=||\Phi_g^v(z_v(x))-\mathrm{sg}[z_v(T_g(x))]||^2)
 
-ensures that **transforming the variant factors in latent space produces the same result as extracting them from the actually transformed image**, leading to consistent and equivariant representation learning.  
+ensures that transforming the variant factors in latent space produces the same result as extracting them from the actually transformed image, leading to consistent and equivariant representation learning.  
+
+Here, **sg[·]** (stop-gradient) prevents gradients from flowing through the encoder, so learning focuses on latent-space transformations rather than altering feature extraction.  
+
+Hyperparameters λᵢ and λᵥ are set to **1**, and the **threshold τ** controls the sparsity of the learned latent partition.  
+We **jointly optimize all network parameters**, including the Adaptive Latent Disentanglement (ALD) and group action modules, enabling automatic discovery of meaningful latent partitions and their transformations.  
+
+Training uses **Adam optimizer** (learning rate `1e-3`), batch size `64`, for `50` epochs, saving the model with the **lowest validation loss**.
+
 
 Here, **sg[·]** (stop-gradient) prevents gradients from flowing through the encoder, so learning focuses on latent-space transformations rather than altering feature extraction.  
 
