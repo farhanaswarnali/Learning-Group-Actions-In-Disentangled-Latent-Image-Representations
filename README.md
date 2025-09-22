@@ -51,7 +51,7 @@ ensures that transforming the variant factors in latent space produces the same 
 Here, **sg[·]** (stop-gradient) prevents gradients from flowing through the encoder, focusing learning on latent-space transformations rather than feature extraction adjustments.
 
 Hyperparameters λᵢ and λᵥ are set to **1**, and the threshold τ controls the sparsity of the learned latent partition.  
-We **jointly optimize all network parameters**, including the Adaptive Latent Disentanglement (ALD) and group action modules, enabling automatic discovery of meaningful latent partitions and their transformations.  
+We **jointly optimize all network parameters**, including the Adaptive Latent Disentanglement (ALD) and group action modules, enabling automatic discovery of meaningful latent partitions while simultaneously learning their corresponding transformations.  
 
 Training uses the **Adam optimizer** (learning rate `1e-3`), batch size `64`, for `50` epochs, saving the model with the **lowest validation loss**.
 
