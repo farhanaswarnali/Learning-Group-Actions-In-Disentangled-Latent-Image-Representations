@@ -13,7 +13,7 @@ To run this project, following Python packages are needed:
 - numpy
 
 ## Dataset
-We use a variant of the original **MNIST** dataset, consisting of 70,000 grayscale handwritten digits across 10 classes (0–9), with each image of size 28×28.  
+We use a total of five dataset including a variant of the original **MNIST** dataset, consisting of 70,000 grayscale handwritten digits across 10 classes (0–9), with each image of size 28×28.  
 Here, we are providing the code for the **Rotated MNIST** dataset in this repo.
 
 ## Training Process
